@@ -1,0 +1,95 @@
+package com.krakedev.taller.entidades;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "mecanicos")
+
+
+public class Mecanico {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(nullable = false, length = 50)
+	private String nombre;
+	
+	@Column(nullable = false, length = 50)
+	private String especialidad;
+	
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "mecanicos")
+	private List<Reparacion> reparaciones;
+
+
+	
+	
+	
+	
+	//Constructor vacio
+	public Mecanico() {
+	}
+	
+	//Constructor con nombre y especialidad
+	public Mecanico(String nombre, String especialidad) {
+		this.nombre = nombre;
+		this.especialidad = especialidad;
+	}
+
+
+	//Get y Set
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+
+	public List<Reparacion> getReparaciones() {
+		return reparaciones;
+	}
+
+
+	public void setReparaciones(List<Reparacion> reparaciones) {
+		this.reparaciones = reparaciones;
+	}
+	
+	
+	
+	
+}
